@@ -3,27 +3,24 @@
 /*kit Equals Vault */
 
 using System;
-using System.Linq;
-using Keepr.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Keepr.Models;
+using Keepr.Data;
+
 
 namespace Keepr.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class KeepsController : ControllerBase
+  public class VaultKeepController : ControllerBase
   {
     // GET api/values
     [HttpGet]
-    public ActionResult<IEnumerable<Keeps>> Get()
+    public ActionResult<IEnumerable<string>> Get()
     {
-      try
-      {
-        return Ok(_repository.GetKeeps());
-      }
+      return new string[] { "value1", "value2" };
     }
 
     // GET api/values/5
