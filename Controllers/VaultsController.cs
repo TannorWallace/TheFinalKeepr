@@ -3,12 +3,14 @@
 /*kit Equals Vault */
 
 using System;
-using System.Collections.Generic;
+using Dapper;
+using Keepr.Data;
 using System.Linq;
+
+using Keepr.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Keepr.Data;
-
 
 namespace Keepr.Controllers
 {
@@ -16,11 +18,26 @@ namespace Keepr.Controllers
   [ApiController]
   public class VaultsController : ControllerBase
   {
+    private readonly VaultRepository _repository;
+    public VaultsController(VaultRepository repository)
+    {
+      _repository = repository;
+    }
     // GET api/values
     [HttpGet]
-    public ActionResult<IEnumerable<string>> Get()
+    //FIXME WHY ISNT GET WORKING?? VAULTS? VAULT? NAMING IS HARD!
+    public ActionResult<IEnumerable<Vaults>> Get()
     {
-      return new string[] { "value1", "value2" };
+      try
+      {
+        return Ok(_repository.GetVaults());
+      }
+      catch (Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+
     }
 
     // GET api/values/5

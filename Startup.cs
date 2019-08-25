@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using Keepr.Data;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using keepr.Repositories;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Keepr
 {
@@ -58,6 +59,9 @@ namespace Keepr
       // TODO register all Transient informations
       services.AddTransient<IDbConnection>(x => CreateDBContext());
       services.AddTransient<UserRepository>();
+      services.AddTransient<KeepRepository>();
+      services.AddTransient<VaultRepository>();
+      services.AddTransient<VaultKeepRepository>();
 
 
     }
@@ -82,6 +86,8 @@ namespace Keepr
       {
         app.UseHsts();
       }
+      //NOTE I dont remember what UseHttpsRedirection is but it was in the reference so better safe than sorry (shrug)
+      app.UseHttpsRedirection();
       app.UseAuthentication();
       app.UseDefaultFiles();
       app.UseStaticFiles();

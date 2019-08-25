@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Keepr.Data;
-
+using Keepr.Models;
 
 namespace Keepr.Controllers
 {
