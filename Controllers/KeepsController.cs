@@ -6,11 +6,14 @@ using Keepr.Data;
 using Keepr.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+  // [Authorize]
   public class KeepsController : ControllerBase
 
   {
@@ -20,6 +23,8 @@ namespace Keepr.Controllers
     {
       _repository = repository;
     }
+
+    #region ALL-GET-METHODS!!
     // GET api/values
     [HttpGet]
     public ActionResult<IEnumerable<Keeps>> Get()
@@ -41,13 +46,31 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_repository.GetKeepById(id));
+        return Ok(_repository.GetKeepsById(id));
       }
       catch (Exception e)
       {
-        return BadRequest(e.Message);
+        return BadRequest("This is not the vault youre looking for.");
       }
     }
+    [HttpGet("user")]
+
+    public ActionResult<Keeps> GetKeepsByUserId()
+    {
+      try
+      {
+
+        string userId = HttpContext.User.FindFirstValue("userId");
+        return Ok(_repository.GetKeepsByUserId(userId));
+
+      }
+      catch
+      {
+        return BadRequest("NOpe UserID or something is wrong");
+      }
+
+    }
+    #endregion
 
     // POST api/values
     [HttpPost]
@@ -55,6 +78,7 @@ namespace Keepr.Controllers
     {
       try
       {
+        keeps.userId = HttpContext.User.FindFirstValue("Id");
         return Ok(_repository.CreateKeeps(keeps));
       }
       catch (Exception e)

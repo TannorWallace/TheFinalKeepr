@@ -21,17 +21,7 @@ namespace Keepr.Data
       _db = db;
     }
     //Do the CRUD...just minus the U....Edits are a stretch goal.
-    // public IEnumerable<Keeps> CreateKeeps(Keeps keeps)
-    // {
-    //   //image or img? 
-    //   int id = _db.ExecuteScalar<int>(@"
-    //   INSERT INTO keeps (name, description)
-    //   VALUES (@Name, @Description);
-    //   SELECT LAST_INSERT_ID();", keeps);
-    //   keeps.Id = id;
-    //   yield return keeps;
-    // }
-
+    #region CREATE KEEPS
     public Keeps CreateKeeps(Keeps keeps)
     {
       int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, description) VALUES (@Name, @Description);
@@ -39,25 +29,39 @@ namespace Keepr.Data
       keeps.Id = id;
       return keeps;
     }
+    #endregion
 
+    #region GETALLKEEPS
     public IEnumerable<Keeps> GetKeeps()
     {
       return _db.Query<Keeps>("SELECT * FROM keeps");
     }
+    #endregion
 
-    public Keeps GetKeepById(int id)
+    #region GETKEEPBYID
+
+    public Keeps GetKeepsById(int id)
     {
-      return _db.QueryFirstOrDefault<Keeps>("SELECT * FROM keeps WHERE id = @id", new { id });
+      return _db.QueryFirstOrDefault<Keeps>("SELECT * FROM Keep WHERE id = @id", new { id });
     }
-
+    #endregion
+    #region GETKEEPSBYUSERID
+    public IEnumerable<Keeps> GetKeepsByUserId(string userId)
+    {
+      return _db.Query<Keeps>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
+    }
+    #endregion
+    #region DELETEKEEPBYID
+    #region DELETEKEEPSBYID
     public void DeleteKeeps(int id)
     {
-      var success = _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
-      if (success != 1)
+      var complete = _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
+      if (complete != 1)
       {
         throw new Exception("Failed to delete");
       }
     }
+    #endregion
   }
 }
 

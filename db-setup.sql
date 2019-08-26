@@ -66,3 +66,7 @@
 -- -- SELECT * FROM vaultkeeps vk
 -- -- INNER JOIN keeps k ON k.id = vk.keepId 
 -- -- WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+
+
+-- ALTER TABLE vaults
+-- MODIFY COLUMN name VARCHAR(255);

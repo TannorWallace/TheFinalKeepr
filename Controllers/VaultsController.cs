@@ -7,12 +7,17 @@ using Keepr.Data;
 using keepr.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-// using keepr.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+// Stack over flow not very helpful
+// using Microsoft.AspNetCore.Identity;
+
 
 namespace Keepr.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+  // [Authorize]
   public class VaultsController : ControllerBase
   {
     private readonly VaultsRepository _repository;
@@ -27,6 +32,7 @@ namespace Keepr.Controllers
     {
       try
       {
+        vaults.userId = HttpContext.User.FindFirstValue("Id");
         return Ok(_repository.CreateVault(vaults));
       }
       catch (Exception e)
@@ -60,6 +66,7 @@ namespace Keepr.Controllers
     {
       try
       {
+
         return Ok(_repository.GetVaultsById(id));
       }
       catch (Exception e)
@@ -67,6 +74,7 @@ namespace Keepr.Controllers
         return BadRequest("This is not the vault youre looking for.");
       }
     }
+
     #endregion
     #region DELETE
     // DELETE api/values/5
