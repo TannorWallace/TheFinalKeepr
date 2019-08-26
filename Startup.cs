@@ -60,7 +60,7 @@ namespace Keepr
       services.AddTransient<IDbConnection>(x => CreateDBContext());
       services.AddTransient<UserRepository>();
       services.AddTransient<KeepRepository>();
-      services.AddTransient<VaultRepository>();
+      services.AddTransient<VaultsRepository>();
       services.AddTransient<VaultKeepRepository>();
 
 
@@ -87,7 +87,7 @@ namespace Keepr
         app.UseHsts();
       }
       //NOTE I dont remember what UseHttpsRedirection is but it was in the reference so better safe than sorry (shrug)
-      app.UseHttpsRedirection();
+      // app.UseHttpsRedirection();
       app.UseAuthentication();
       app.UseDefaultFiles();
       app.UseStaticFiles();

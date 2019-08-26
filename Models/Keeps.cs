@@ -10,7 +10,7 @@ namespace Keepr.Models
     public string Name { get; set; }
     public string Description { get; set; }
     //NOTE DO I NEED TO KEEP A LIST OF MY KEEPS (AKA PINS)?
-    public List<VaultKeep> KeeprList { get; set; }
+    // public List<VaultKeep> KeeprList { get; set; }
   }
 
 }

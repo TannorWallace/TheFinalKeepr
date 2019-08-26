@@ -2,19 +2,20 @@
 /*Vault Equals Board */
 /*kit Equals Vault */
 
-using System.Data;
 using System;
-using System.Collections.Generic;
 using Dapper;
+using System.Data;
 using keepr.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Keepr.Data
 {
-  public class VaultRepository
+  public class VaultsRepository
   {
     private readonly IDbConnection _db;
 
-    public VaultRepository(IDbConnection db)
+    public VaultsRepository(IDbConnection db)
     {
       _db = db;
     }
@@ -22,24 +23,34 @@ namespace Keepr.Data
     {
       return _db.Query<Vaults>("SELECT * FROM vaults");
     }
-    public Vaults CreateVault(Vaults vaults)
-    {
-      var id = _db.ExecuteScalar<int>(@"INTSERT INTO vault (name, image, description) VALUES (@Name, @Image, @Description);SELECT LAST_INSERTED_ID();", vaults);
-      vaults.Id = id;
-      return vaults;
-    }
-    public Vaults GetVaultsById(int id)
-    {
-      return _db.QueryFirstOrDefault<Vaults>("SELECT * FROM vaults WHERE id = @id", new { id });
-    }
+    #region DELETE
     //delete doesnt return anything DUH!!! THats why it wasnt working with action result
     public void DeleteVaults(int id)
     {
       var complete = _db.Execute("DELETE FROM vaults WHERE id = @id", new { id });
       if (complete != 1)
       {
-        throw new Exception("Un able to comply");
+        throw new Exception("Unable to comply");
       }
     }
+    #endregion
+
+    #region CREATE/POST
+    public Vaults CreateVault(Vaults vaults)
+    {
+      var id = _db.ExecuteScalar<int>(@"INSERT INTO vaults (name, description) VALUES (@Name, @Description); 
+      SELECT LAST_INSERT_ID();", vaults);
+      vaults.Id = id;
+      return vaults;
+    }
+    #endregion
+
+    #region GETBYID
+    public Vaults GetVaultsById(int id)
+    {
+      return _db.QueryFirstOrDefault<Vaults>("SELECT * FROM vaults WHERE id = @id", new { id });
+    }
+    #endregion
+
   }
 }

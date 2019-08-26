@@ -1,16 +1,13 @@
 /*BRICK EQUALS KEEP */
 /*Vault Equals Board */
 /*kit Equals Vault */
-
+/*POSTMAN ON http://localhost:5000/api/vaults*/
 using System;
-using Dapper;
 using Keepr.Data;
-using System.Linq;
-
-using Keepr.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using keepr.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+// using keepr.Models;
 
 namespace Keepr.Controllers
 {
@@ -18,11 +15,27 @@ namespace Keepr.Controllers
   [ApiController]
   public class VaultsController : ControllerBase
   {
-    private readonly VaultRepository _repository;
-    public VaultsController(VaultRepository repository)
+    private readonly VaultsRepository _repository;
+    public VaultsController(VaultsRepository repository)
     {
       _repository = repository;
     }
+    #region POST
+    // POST api/vaults
+    [HttpPost]
+    public ActionResult<Vaults> Post([FromBody] Vaults vaults)
+    {
+      try
+      {
+        return Ok(_repository.CreateVault(vaults));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    #endregion
+    #region GET
     // GET api/values
     [HttpGet]
     //FIXME WHY ISNT GET WORKING?? VAULTS? VAULT? NAMING IS HARD!
@@ -39,30 +52,38 @@ namespace Keepr.Controllers
       }
 
     }
-
+    #endregion
+    #region GETBYID
     // GET api/values/5
     [HttpGet("{id}")]
-    public ActionResult<string> Get(int id)
+    public ActionResult<Vaults> Get(int id)
     {
-      return "value";
+      try
+      {
+        return Ok(_repository.GetVaultsById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest("This is not the vault youre looking for.");
+      }
     }
-
-    // POST api/values
-    [HttpPost]
-    public void Post([FromBody] string value)
-    {
-    }
-
-    // // PUT api/values/5
-    // [HttpPut("{id}")]
-    // public void Put(int id, [FromBody] string value)
-    // {
-    // }
-
+    #endregion
+    #region DELETE
     // DELETE api/values/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public ActionResult<Vaults> Delete(int id)
     {
+      try
+      {
+        _repository.DeleteVaults(id);
+        return Ok("Vault Destroyed");
+      }
+      catch (Exception e)
+      {
+
+        return BadRequest("Cannot Delete Vault!");
+      }
     }
+    #endregion
   }
 }
