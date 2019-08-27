@@ -7,6 +7,8 @@ namespace Keepr.Models
   {
     public int Id { get; set; }
     public string userId { get; set; }
+    //idk if this is what get keep by keepID means but I'll try should this be a string instead of an int?
+    // public int keepId { get; set; }
     public string Img { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }

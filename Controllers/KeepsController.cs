@@ -46,7 +46,7 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_repository.GetKeepsById(id));
+        return Ok(_repository.GetKeepById(id));
       }
       catch (Exception e)
       {

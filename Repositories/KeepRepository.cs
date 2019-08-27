@@ -40,9 +40,9 @@ namespace Keepr.Data
 
     #region GETKEEPBYID
 
-    public Keeps GetKeepsById(int id)
+    public Keeps GetKeepById(int id)
     {
-      return _db.QueryFirstOrDefault<Keeps>("SELECT * FROM Keep WHERE id = @id", new { id });
+      return _db.QueryFirstOrDefault<Keeps>("SELECT * FROM Keeps WHERE id = @id", new { id });
     }
     #endregion
     #region GETKEEPSBYUSERID
@@ -52,7 +52,7 @@ namespace Keepr.Data
     }
     #endregion
     #region DELETEKEEPBYID
-    #region DELETEKEEPSBYID
+
     public void DeleteKeeps(int id)
     {
       var complete = _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
@@ -64,5 +64,3 @@ namespace Keepr.Data
     #endregion
   }
 }
-
-
