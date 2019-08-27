@@ -6,6 +6,7 @@
 // ALL VAULTS WILL BE DONE BY USER ID BECUAE THAT IS EVERYONES OWN VAULT
 using System;
 using Dapper;
+using System.Linq;
 using System.Data;
 using Keepr.Models;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Keepr.Data
     #region CREATE KEEPS
     public Keeps CreateKeeps(Keeps keeps)
     {
-      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, description) VALUES (@Name, @Description);
+      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, description, userId) VALUES (@Name, @Description, @userId);
   SELECT LAST_INSERT_ID();", keeps);
       keeps.Id = id;
       return keeps;
@@ -42,7 +43,14 @@ namespace Keepr.Data
 
     public Keeps GetKeepById(int id)
     {
-      return _db.QueryFirstOrDefault<Keeps>("SELECT * FROM Keeps WHERE id = @id", new { id });
+      try
+      {
+        return _db.QuerySingle<Keeps>("SELECT * FROM keeps WHERE id = @Id", new { id });
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
     }
     #endregion
     #region GETKEEPSBYUSERID
@@ -51,6 +59,7 @@ namespace Keepr.Data
       return _db.Query<Keeps>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
     }
     #endregion
+
     #region DELETEKEEPBYID
 
     public void DeleteKeeps(int id)

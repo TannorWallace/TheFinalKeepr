@@ -41,6 +41,7 @@ namespace Keepr.Controllers
     }
 
     // GET api/values/5
+    [Authorize]
     [HttpGet("{id}")]
     public ActionResult<Keeps> Get(int id)
     {
@@ -53,6 +54,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [Authorize]
     [HttpGet("user")]
 
     public ActionResult<Keeps> GetKeepsByUserId()
@@ -60,7 +62,7 @@ namespace Keepr.Controllers
       try
       {
 
-        string userId = HttpContext.User.FindFirstValue("userId");
+        string userId = HttpContext.User.FindFirstValue("Id");
         return Ok(_repository.GetKeepsByUserId(userId));
 
       }
@@ -89,6 +91,7 @@ namespace Keepr.Controllers
     }
 
     // DELETE api/values/5
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<Keeps> Delete(int id)
     {

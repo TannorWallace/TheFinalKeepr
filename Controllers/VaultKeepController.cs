@@ -35,10 +35,17 @@ namespace Keepr.Controllers
 
     // GET api/values
     [HttpGet]
-    public ActionResult<IEnumerable<string>> Get()
-    {
-      return new string[] { "value1", "value2" };
-    }
+    // public ActionResult<IEnumerable<string>> Get()
+    // {
+    //   try
+    //   {
+    //     return Ok(_repository.GetVaultKeep());
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     // GET api/values/5
     [HttpGet("{id}")]

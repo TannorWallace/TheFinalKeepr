@@ -6,6 +6,8 @@ using System.Data;
 using keepr.Models;
 using Dapper;
 using System.Collections.Generic;
+using System;
+
 namespace Keepr.Data
 {
   public class VaultKeepRepository
@@ -27,6 +29,11 @@ namespace Keepr.Data
       VaultKeep.Id = id;
       return VaultKeep;
     }
+
+    // internal object GetVaultKeepByVaultId()
+    // {
+    //   // return _db.QueryFirstOrDefault<VaultKeep>("SELECT * FROM")
+    // }
     // #endregion
   }
 }
