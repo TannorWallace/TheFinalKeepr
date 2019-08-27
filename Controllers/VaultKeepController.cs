@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Keepr.Data;
 using Keepr.Models;
+using keepr.Models;
+using System.Security.Claims;
 
 namespace Keepr.Controllers
 {
@@ -16,13 +18,15 @@ namespace Keepr.Controllers
   [ApiController]
   public class VaultKeepController : ControllerBase
   {
-    // GET api/values
     // POST api/values
     [HttpPost]
-    public void Post([FromBody] string value)
+    public ActionResult<VaultKeep> Post([FromBody] VaultKeep vaultkeep)
     {
+      var id = HttpContext.User.FindFirstValue("Id");
+      return Ok(_repository.CreateVaultKeep(VaultKeep))
     }
 
+    // GET api/values
     [HttpGet]
     public ActionResult<IEnumerable<string>> Get()
     {
