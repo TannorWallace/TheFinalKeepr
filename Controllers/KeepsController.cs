@@ -50,7 +50,7 @@ namespace Keepr.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest("This is not the vault youre looking for.");
+        return BadRequest(e.Message);
       }
     }
     [HttpGet("user")]
@@ -84,7 +84,7 @@ namespace Keepr.Controllers
       catch (Exception e)
       {
 
-        return BadRequest("Cannot create keep data");
+        return BadRequest(e.Message);
       }
     }
 
@@ -100,7 +100,7 @@ namespace Keepr.Controllers
       catch (Exception e)
       {
 
-        return BadRequest("Unable to destroy Keep");
+        return BadRequest(e.Message);
       }
     }
   }

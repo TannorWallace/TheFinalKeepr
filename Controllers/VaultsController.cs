@@ -71,7 +71,7 @@ namespace Keepr.Controllers
       }
       catch (Exception e)
       {
-        return BadRequest("This is not the vault youre looking for.");
+        return BadRequest(e.Message);
       }
     }
 
@@ -89,7 +89,7 @@ namespace Keepr.Controllers
       catch (Exception e)
       {
 
-        return BadRequest("Cannot Delete Vault!");
+        return BadRequest(e.Message);
       }
     }
     #endregion

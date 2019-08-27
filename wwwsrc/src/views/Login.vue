@@ -19,6 +19,8 @@
 </template>
 
 <script>
+    import router from "../router"
+    import keeps from "@/Components/KeepsComponent.vue"
     export default {
         name: "login",
         data() {
@@ -35,9 +37,9 @@
                 }
             };
         },
-        beforeCreate(){
-            if(this.$store.state.user.id){
-                this.$router.push({name: "home"})
+        beforeCreate() {
+            if (this.$store.state.user.id) {
+                this.$router.push({ name: "home" })
             }
         },
         methods: {

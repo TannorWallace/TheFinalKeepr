@@ -11,6 +11,7 @@ using Keepr.Data;
 using Keepr.Models;
 using keepr.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
 {
@@ -18,12 +19,18 @@ namespace Keepr.Controllers
   [ApiController]
   public class VaultKeepController : ControllerBase
   {
-    // POST api/values
-    [HttpPost]
-    public ActionResult<VaultKeep> Post([FromBody] VaultKeep vaultkeep)
+    private readonly VaultKeepRepository _repository;
+    public VaultKeepController(VaultKeepRepository repository)
     {
-      var id = HttpContext.User.FindFirstValue("Id");
-      return Ok(_repository.CreateVaultKeep(VaultKeep))
+      _repository = repository;
+    }
+    // POST api/values
+    [Authorize]
+    [HttpPost]
+    public ActionResult<VaultKeep> Post([FromBody] VaultKeep newVaultKeep)
+    {
+      newVaultKeep.userId = HttpContext.User.FindFirstValue("Id");
+      return Ok(_repository.CreateVaultKeep(newVaultKeep));
     }
 
     // GET api/values

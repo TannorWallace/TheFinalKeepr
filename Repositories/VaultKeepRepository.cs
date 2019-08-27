@@ -17,15 +17,16 @@ namespace Keepr.Data
       _db = db;
     }
     //   #region CREATEVAULT_KEEP
-    //   public VaultKeep CreateVaultKeep(VaultKeep vaultkeep)
-    //   {
-    //     int id = _db.ExecuteScalar<int>(@"
-    // INSERT INTO vaultkeeps (userId, vaultId, keepId)
-    // VALUES (@CreateId, @VaultIs, @KeepId);
-    // SELECT LAST_INSERT_ID();
-    //   ", VaultKeep);
-    //     return VaultKeep;
-    //   }
+    public VaultKeep CreateVaultKeep(VaultKeep VaultKeep)
+    {
+      int id = _db.ExecuteScalar<int>(@"
+    INSERT INTO vaultkeeps (userId, vaultId, keepId)
+    VALUES (@UserId, @VaultId, @KeepId);
+    SELECT LAST_INSERT_ID();
+      ", VaultKeep);
+      VaultKeep.Id = id;
+      return VaultKeep;
+    }
     // #endregion
   }
 }

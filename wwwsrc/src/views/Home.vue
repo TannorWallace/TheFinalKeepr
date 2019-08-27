@@ -7,17 +7,18 @@
 </template>
 
 <script>
-export default {
-  name: "home",
-  computed: {
-    user() {
-      return this.$store.state.user;
+  import router from '../router'
+  export default {
+    name: "home",
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch("logout");
+      }
     }
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    }
-  }
-};
+  };
 </script>
