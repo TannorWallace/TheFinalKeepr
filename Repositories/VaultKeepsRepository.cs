@@ -10,11 +10,11 @@ using System;
 
 namespace Keepr.Data
 {
-  public class VaultKeepRepository
+  public class VaultKeepsRepository
   {
     private readonly IDbConnection _db;
 
-    public VaultKeepRepository(IDbConnection db)
+    public VaultKeepsRepository(IDbConnection db)
     {
       _db = db;
     }
@@ -30,10 +30,7 @@ namespace Keepr.Data
       return VaultKeep;
     }
 
-    // internal object GetVaultKeepByVaultId()
-    // {
-    //   // return _db.QueryFirstOrDefault<VaultKeep>("SELECT * FROM")
-    // }
+
     // #endregion
   }
 }

@@ -61,7 +61,7 @@ namespace Keepr
       services.AddTransient<UserRepository>();
       services.AddTransient<KeepRepository>();
       services.AddTransient<VaultsRepository>();
-      services.AddTransient<VaultKeepRepository>();
+      services.AddTransient<VaultKeepsRepository>();
 
 
     }

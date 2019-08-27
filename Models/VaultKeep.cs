@@ -6,7 +6,7 @@ namespace keepr.Models
 {
   public class VaultKeep
   {
-    public string userId { get; set; }
+    public string UserId { get; set; }
     public int VaultId { get; set; }
     public string KeepId { get; set; }
     //ID WAS DESCRIPTION!!!
