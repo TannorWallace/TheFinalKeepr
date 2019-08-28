@@ -17,11 +17,11 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    keeps: [],
+    Keep: [],
     activeKeep: {},
-    vaults: [],
+    Vaults: [],
     activeVault: {},
-    vaultkeep: []
+    VaultKeep: []
   },
   mutations: {
     setUser(state, user) {
@@ -32,13 +32,13 @@ export default new Vuex.Store({
       state.user = {}
     },
     setKeeps(state, data) {
-      state.keeps = data
+      state.Keep = data
     },
     setVaults(state, data) {
-      state.vaults = data
+      state.Vaults = data
     },
     setVaultKeeps(state, data) {
-      state.vaultkeep = data
+      state.VaultKeep = data
     },
     setActiveKeep(state, data) {
       state.activeKeep = data
@@ -73,14 +73,56 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message)
       }
+
     },
-    async getAllKeeps({ dispatch, commit }) {
+
+    async createKeep({ dispatch, commit }, payload) {
       try {
-        let res = await api.get('/keeps')
-        commit('setKeeps', res.data.keeps)
+        let res = await api.post('keep/', payload)
+        dispatch('getKeeps')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async getKeeps({ dispatch, commit }) {
+      try {
+        let res = await api.get('keeps')
+        commit('setKeeps', res.data)
       }
       catch (error) { console.log(error) }
     },
+
+    async deleteKeep({ dispatch, commit }, payload) {
+      try {
+        let res = await api.delete('keep', payload)
+        dispatch('getKeeps')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    // async getKeepById({ dispatch, commit }, payload) {
+    //   try {
+    //     let
+    //   }
+    // },
+    async createVault({ dispatch, commit }, payload) {
+      try {
+        let res = await api.post('vault/', payload)
+        dispatch('getVault')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getVaults({ dispatch, commit }) {
+      try {
+        let res = await api.get('vault')
+        commit('setVaults', res.data)
+      }
+      catch (error) { console.log(error) }
+    },
+
     //     async getKeepByKeepId({ dispatch, commit } payload) {
     //       try {
     //     let res = await api.get('/keeps/keepsId')

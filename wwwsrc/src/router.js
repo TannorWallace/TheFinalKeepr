@@ -20,14 +20,18 @@ export default new Router({
       component: Login
     },
     {
-      path: '/vaults',
-      name: 'vaults',
+      path: '/Vaults',
+      name: 'Vaults',
       // component: Vaults
     },
     {
-      path: '/keeps',
-      name: 'keeps',
+      path: '/Keeps',
+      name: 'Keeps',
       // component: Keeps
+    },
+    {
+      path: "*",
+      redirect: '/'
     }
   ]
 })

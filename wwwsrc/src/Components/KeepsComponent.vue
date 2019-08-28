@@ -1,34 +1,46 @@
 <template>
-  <div class="Keep">
-    <div class="card" style="width: 18rem;">
-      <!-- <img src="..." class="card-img-top" alt="..."> -->
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis alias unde nisi?
-          Minus quas facere minima? Vel impedit velit debitis.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="container-fluid mt-2">
+    <div class="row Keep ">
+      <div class="col-3 " v-for="Keep in Keep">
+        <div class="card border border-dark m-1" style="width: 18rem;">
+          <div class="card-body">
+            <img :src="Keep.img" class="card-img-top" alt="...">
+            <h5 class="card-title">{{Keep.name}}</h5>
+            <p class="card-text">{{Keep.description}}
+            </p>
+            <!-- this button will be save -->
+            <button class="btn btn-success">S</button>
+            <!-- this button will be delete -->
+            <button class="btn btn-danger" @click="deleteKeep">X</button>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 
 
 <script>
   export default {
-    name: 'Keep',
+    name: 'KeepsComponent',
+    props: ['keepData'],
     data() {
-      return {}
-    },
-    computed: {
-      getAllKeeps() {
-        return this.$store.state.keep
+      return {
+
       }
     },
-    methods: {},
+    computed: {
+      Keep() {
+        return this.$store.state.Keep
+      }
+    },
+    methods: {
+      deleteKeep() {
+        this.$store.dispatch('deleteKeep', this.keepId)
+      }
+    },
     components: {
-      // keeps
+
     }
   }
 </script>
