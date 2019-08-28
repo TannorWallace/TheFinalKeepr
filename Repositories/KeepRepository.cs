@@ -6,9 +6,12 @@
 // ALL VAULTS WILL BE DONE BY USER ID BECUAE THAT IS EVERYONES OWN VAULT
 using System;
 using Dapper;
-using System.Linq;
+
 using System.Data;
 using Keepr.Models;
+//breaks alot of stuff. IDK where I got two keepr.models
+// using keepr.Models;
+
 using System.Collections.Generic;
 
 namespace Keepr.Data
@@ -23,7 +26,7 @@ namespace Keepr.Data
     }
     //Do the CRUD...just minus the U....Edits are a stretch goal.
     #region CREATE KEEPS
-    public Keeps CreateKeeps(Keeps keeps)
+    public Keep CreateKeep(Keep keeps)
     {
       int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, description, userId) VALUES (@Name, @Description, @userId);
   SELECT LAST_INSERT_ID();", keeps);
@@ -33,19 +36,19 @@ namespace Keepr.Data
     #endregion
 
     #region GETALLKEEPS
-    public IEnumerable<Keeps> GetKeeps()
+    public IEnumerable<Keep> GetKeeps()
     {
-      return _db.Query<Keeps>("SELECT * FROM keeps");
+      return _db.Query<Keep>("SELECT * FROM keeps");
     }
     #endregion
 
     #region GETKEEPBYID
 
-    public Keeps GetKeepById(int id)
+    public Keep GetKeepById(int id)
     {
       try
       {
-        return _db.QuerySingle<Keeps>("SELECT * FROM keeps WHERE id = @Id", new { id });
+        return _db.QuerySingle<Keep>("SELECT * FROM keeps WHERE id = @Id", new { id });
       }
       catch (Exception e)
       {
@@ -54,9 +57,9 @@ namespace Keepr.Data
     }
     #endregion
     #region GETKEEPSBYUSERID
-    public IEnumerable<Keeps> GetKeepsByUserId(string userId)
+    public IEnumerable<Keep> GetKeepsByUserId(string userId)
     {
-      return _db.Query<Keeps>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
     }
     #endregion
 

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using keepr.Models;
 
 namespace Keepr.Models
 {
-  public class Keeps
+  public class Keep
   {
     public int Id { get; set; }
     public string userId { get; set; }

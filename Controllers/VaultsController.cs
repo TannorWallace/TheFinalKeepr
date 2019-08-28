@@ -4,7 +4,7 @@
 /*POSTMAN ON http://localhost:5000/api/vaults*/
 using System;
 using Keepr.Data;
-using keepr.Models;
+using Keepr.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -28,12 +28,12 @@ namespace Keepr.Controllers
     #region POST
     // POST api/vaults
     [HttpPost]
-    public ActionResult<Vaults> Post([FromBody] Vaults vaults)
+    public ActionResult<Vault> Post([FromBody] Vault vault)
     {
       try
       {
-        vaults.userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_repository.CreateVault(vaults));
+        vault.userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_repository.CreateVault(vault));
       }
       catch (Exception e)
       {
@@ -45,7 +45,7 @@ namespace Keepr.Controllers
     // GET api/values
     [HttpGet]
     //FIXME WHY ISNT GET WORKING?? VAULTS? VAULT? NAMING IS HARD!
-    public ActionResult<IEnumerable<Vaults>> Get()
+    public ActionResult<IEnumerable<Vault>> Get()
     {
       try
       {
@@ -62,7 +62,7 @@ namespace Keepr.Controllers
     #region GETBYID
     // GET api/values/5
     [HttpGet("{id}")]
-    public ActionResult<Vaults> Get(int id)
+    public ActionResult<Vault> Get(int id)
     {
       try
       {
@@ -79,7 +79,7 @@ namespace Keepr.Controllers
     #region DELETE
     // DELETE api/values/5
     [HttpDelete("{id}")]
-    public ActionResult<Vaults> Delete(int id)
+    public ActionResult<Vault> Delete(int id)
     {
       try
       {

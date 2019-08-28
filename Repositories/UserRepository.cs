@@ -3,10 +3,10 @@ using System.Data;
 using System.Linq;
 using BCrypt.Net;
 using Dapper;
-using keepr.Models;
+using Keepr.Models;
 //REVIEW DO NOT MESS WITH THIS FILE AT ALL
 
-namespace keepr.Repositories
+namespace Keepr.Repositories
 {
   public class UserRepository
   {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 //REVIEW DO NOT MESS WITH THIS FILE AT ALL!!!
-namespace keepr.Models
+namespace Keepr.Models
 {
 
   public class UserLogin // HELPER MODEL

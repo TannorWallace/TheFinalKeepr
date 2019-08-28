@@ -27,7 +27,7 @@ namespace Keepr.Controllers
     #region ALL-GET-METHODS!!
     // GET api/values
     [HttpGet]
-    public ActionResult<IEnumerable<Keeps>> Get()
+    public ActionResult<IEnumerable<Keep>> Get()
     {
       try
       {
@@ -43,7 +43,7 @@ namespace Keepr.Controllers
     // GET api/values/5
     [Authorize]
     [HttpGet("{id}")]
-    public ActionResult<Keeps> Get(int id)
+    public ActionResult<Keep> Get(int id)
     {
       try
       {
@@ -57,7 +57,7 @@ namespace Keepr.Controllers
     [Authorize]
     [HttpGet("user")]
 
-    public ActionResult<Keeps> GetKeepsByUserId()
+    public ActionResult<Keep> GetKeepsByUserId()
     {
       try
       {
@@ -76,12 +76,12 @@ namespace Keepr.Controllers
 
     // POST api/values
     [HttpPost]
-    public ActionResult<Keeps> Post([FromBody] Keeps keeps)
+    public ActionResult<Keep> Post([FromBody] Keep keep)
     {
       try
       {
-        keeps.userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_repository.CreateKeeps(keeps));
+        keep.userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_repository.CreateKeep(keep));
       }
       catch (Exception e)
       {
@@ -93,7 +93,7 @@ namespace Keepr.Controllers
     // DELETE api/values/5
     [Authorize]
     [HttpDelete("{id}")]
-    public ActionResult<Keeps> Delete(int id)
+    public ActionResult<Keep> Delete(int id)
     {
       try
       {

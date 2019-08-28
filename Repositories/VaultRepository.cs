@@ -5,7 +5,7 @@
 using System;
 using Dapper;
 using System.Data;
-using keepr.Models;
+using Keepr.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -19,9 +19,9 @@ namespace Keepr.Data
     {
       _db = db;
     }
-    public IEnumerable<Vaults> GetVaults()
+    public IEnumerable<Vault> GetVaults()
     {
-      return _db.Query<Vaults>("SELECT * FROM vaults");
+      return _db.Query<Vault>("SELECT * FROM vaults");
     }
     #region DELETE
     //delete doesnt return anything DUH!!! THats why it wasnt working with action result
@@ -36,19 +36,19 @@ namespace Keepr.Data
     #endregion
 
     #region CREATE/POST
-    public Vaults CreateVault(Vaults vaults)
+    public Vault CreateVault(Vault vault)
     {
       var id = _db.ExecuteScalar<int>(@"INSERT INTO vaults (name, description) VALUES (@Name, @Description); 
-      SELECT LAST_INSERT_ID();", vaults);
-      vaults.Id = id;
-      return vaults;
+      SELECT LAST_INSERT_ID();", vault);
+      vault.Id = id;
+      return vault;
     }
     #endregion
 
     #region GETBYID
-    public Vaults GetVaultsById(int id)
+    public Vault GetVaultsById(int id)
     {
-      return _db.QueryFirstOrDefault<Vaults>("SELECT * FROM vaults WHERE id = @id", new { id });
+      return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
     }
     #endregion
 

@@ -1,17 +1,15 @@
 /*BRICK EQUALS KEEP */
 /*Vault Equals Board */
 /*kit Equals Vault */
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Keepr.Data;
-
-using keepr.Models;
+using Keepr.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+
+
 
 namespace Keepr.Controllers
 {
@@ -24,6 +22,7 @@ namespace Keepr.Controllers
     {
       _repository = repository;
     }
+
     // POST api/values
     [Authorize]
     [HttpPost]
@@ -41,27 +40,22 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    // GET api/values
+    [Authorize]
+    [HttpGet("{VaultId}")]
+    public ActionResult<IEnumerable<VaultKeep>> GetByVaultId(int VaultId)
+    {
+      var UserId = HttpContext.User.FindFirstValue("Id");
+      return Ok(_repository.GetVaultById(VaultId, UserId));
+    }
+
+    // // DELETE api/values/5
+    // [HttpDelete("{id}")]
+    // public void Delete(int id)
+    // {
+    // }
+    //   }
   }
 }
 
-// GET api/values
-// [HttpGet]
-// public ActionResult<VaultKeep> GetVault(int id)
-// {
-//   return _repository.GetVaultKeepByVaultId(id);
-// }
-
-// // GET api/values/5
-// [HttpGet("{id}")]
-// public ActionResult<string> Get(int id)
-// {
-//   return "value";
-// }
-
-
-// // DELETE api/values/5
-// [HttpDelete("{id}")]
-// public void Delete(int id)
-// {
-// }
-//   }
