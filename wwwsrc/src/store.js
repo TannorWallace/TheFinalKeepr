@@ -118,10 +118,12 @@ export default new Vuex.Store({
       }
       catch (error) { console.log(error) }
     },
+
+    //UUUUUGHHHH THIS ONE BROKE MY BRAIIIIN (BARF EMOJI)
     async deleteVaultById({ dispatch, commit }, payload) {
       try {
         let res = await api.delete('vaults/' + payload)
-        dispatch('getVaults')
+        dispatch('getVaultsByUserId')
       } catch (error) {
         console.error(error)
       }
