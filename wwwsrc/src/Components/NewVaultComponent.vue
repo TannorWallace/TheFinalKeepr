@@ -2,13 +2,13 @@
   <div class="newVault">
     <div class="row">
       <!-- hey that bootswatch thing is pretty kewl -->
-      <form @submit="newVault">
+      <form @submit="makeNewVault">
         <div class="form-group">
           <label class="col-form-label col-form-label-lg" for="vault">New Vault</label>
-          <input class="form-control form-control-lg" type="text" placeholder="Name" id="vault" v-model="newVault.Name">
+          <input class="form-control form-control-lg" type="text" placeholder="Name" id="vault" v-model="newVault.name">
           <label class="col-form-label col-form-label-lg" for="vault"></label>
           <input class="form-control form-control-lg" type="text" placeholder="Description" id="vault"
-            v-model="newVault.Description">
+            v-model="newVault.description">
           <button type="submit">Make Vault</button>
         </div>
 
@@ -38,9 +38,10 @@
     computed: {},
     // sweet baby jesus thank you for the capstone!!!
     methods: {
-      makeNewVault(e) {
-        this.$store.dispatch('newVault', this.newVault)
-        router.push({ name: 'vaults' })
+      //vue is NOT breaking on THIS name...
+      makeNewVault() {
+        this.$store.dispatch('makeNewVault', this.newVault)
+        router.push({ name: 'vault' })
       }
     },
     components: {}
