@@ -31,7 +31,7 @@ export default new Router({
 
     },
     {
-      path: '/Vault',
+      path: '/vault',
       name: 'vault',
       component: Vault
     },
@@ -39,6 +39,12 @@ export default new Router({
       path: '/Keeps',
       name: 'Keeps',
       // component: Keeps
+    },
+    {
+      path: '/newKeep',
+      name: 'newKeep',
+      // component: newKeep
+
     },
     {
       path: "*",
