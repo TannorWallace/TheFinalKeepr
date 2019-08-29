@@ -9,6 +9,9 @@ import Vault from './views/Vault.vue'
 // these are always red squiggles?
 //@ts-ignore
 import newVault from './Components/NewVaultComponent.vue'
+//@ts-ignore
+
+import newKeep from './Components/NewKeepComponent.vue'
 
 Vue.use(Router)
 
@@ -32,18 +35,18 @@ export default new Router({
     },
     {
       path: '/vault',
-      name: 'vault',
+      name: 'Vault',
       component: Vault
     },
     {
-      path: '/Keeps',
-      name: 'Keeps',
+      path: '/keeps',
+      name: 'keeps',
       // component: Keeps
     },
     {
       path: '/newKeep',
       name: 'newKeep',
-      // component: newKeep
+      component: newKeep
 
     },
     {
