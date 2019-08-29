@@ -11,7 +11,7 @@
             <!-- this button will be save -->
             <button class="btn btn-success">S</button>
             <!-- this button will be delete -->
-            <button class="btn btn-danger" @click="deleteKeepbyId(Keep.Id)">X</button>
+            <button class="btn btn-danger" @click="deleteKeepbyId(Keep.id)">X</button>
           </div>
         </div>
       </div>
@@ -35,8 +35,9 @@
       }
     },
     methods: {
-      deleteKeepbyId() {
-        this.$store.dispatch('deleteKeepbyId', id)
+      deleteKeepbyId(id) {
+        // debugger
+        this.$store.dispatch('deleteKeepById', id)
       }
     },
     components: {

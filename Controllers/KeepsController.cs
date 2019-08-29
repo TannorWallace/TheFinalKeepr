@@ -41,19 +41,19 @@ namespace Keepr.Controllers
     }
 
     // GET api/values/5
-    [Authorize]
-    [HttpGet("{id}")]
-    public ActionResult<Keep> Get(int id)
-    {
-      try
-      {
-        return Ok(_repository.GetKeepById(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [Authorize]
+    // [HttpGet("{id}")]
+    // public ActionResult<Keep> Get(int id)
+    // {
+    //   try
+    //   {
+    //     return Ok(_repository.GetKeepById(id));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
     [Authorize]
     [HttpGet("user")]
 

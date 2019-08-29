@@ -42,7 +42,7 @@
         router.push({ name: 'Home' })
       },
       deleteVaultById(id) {
-        // debugger
+
         this.$store.dispatch("deleteVaultById", id)
       }
     },
