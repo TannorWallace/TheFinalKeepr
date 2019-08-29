@@ -2,7 +2,7 @@
   <div class="newVault">
     <div class="row">
       <!-- hey that bootswatch thing is pretty kewl -->
-      <form submit="newVault">
+      <form @submit="newVault">
         <div class="form-group">
           <label class="col-form-label col-form-label-lg" for="vault">New Vault</label>
           <input class="form-control form-control-lg" type="text" placeholder="Name" id="vault" v-model="newVault.Name">
@@ -39,7 +39,7 @@
     // sweet baby jesus thank you for the capstone!!!
     methods: {
       makeNewVault(e) {
-        this.$store.dispatch('makeNewVault', this.newVault)
+        this.$store.dispatch('newVault', this.newVault)
         router.push({ name: 'vaults' })
       }
     },
