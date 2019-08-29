@@ -11,7 +11,7 @@
             <!-- this button will be save -->
             <button class="btn btn-success">S</button>
             <!-- this button will be delete -->
-            <button class="btn btn-danger" @click="deleteKeeps(Keep.Id)">X</button>
+            <button class="btn btn-danger" @click="deleteKeepbyId(Keep.Id)">X</button>
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@
       }
     },
     methods: {
-      deleteKeep() {
-        this.$store.dispatch('deleteKeeps', this.keepId)
+      deleteKeepbyId() {
+        this.$store.dispatch('deleteKeepbyId', id)
       }
     },
     components: {

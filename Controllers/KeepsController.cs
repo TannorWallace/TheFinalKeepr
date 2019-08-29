@@ -93,13 +93,13 @@ namespace Keepr.Controllers
     // DELETE api/values/5
     [Authorize]
     [HttpDelete("{id}")]
-    public ActionResult<Keep> Delete(int id)
+    public ActionResult<Keep> DeleteKeepById(int id)
     {
       try
       {
 
-        _repository.DeleteKeeps(id);
-        return Ok("Keep Destoryed!");
+        return Ok(_repository.DeleteKeepById(id));
+        // return Ok("Keep Destoryed!");
       }
       catch (Exception e)
       {

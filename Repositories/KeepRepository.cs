@@ -64,10 +64,10 @@ namespace Keepr.Data
 
     #region DELETEKEEPBYID
 
-    public void DeleteKeeps(int id)
+    public bool DeleteKeepById(int id)
     {
       var complete = _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
-      if (complete != 1)
+      return complete > 0;
       {
         throw new Exception("Failed to delete");
       }
