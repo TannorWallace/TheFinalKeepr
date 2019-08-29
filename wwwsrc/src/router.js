@@ -6,6 +6,9 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 // @ts-ignore
 import Vault from './views/Vault.vue'
+// these are always red squiggles?
+//@ts-ignore
+import newVault from './Components/NewVaultComponent.vue'
 
 Vue.use(Router)
 
@@ -20,6 +23,12 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/newVault',
+      name: 'newVault',
+      component: newVault
+
     },
     {
       path: '/Vault',

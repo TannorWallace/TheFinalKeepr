@@ -4,7 +4,7 @@
 
 
     <div class="">
-      <h3>Vaults-Tec</h3>
+      <h3> Welcom to Vaults-Tec {{user.username}}</h3>
       <router-link to='/'>Home</router-link>
     </div>
     <div class="row">
@@ -27,12 +27,17 @@
 
 
 <script>
+  import router from '../router'
   export default {
     name: 'VaultsComponent',
     data() {
       return {}
     },
+
     computed: {
+      user() {
+        return this.$store.state.user;
+      },
       Vault() {
         return this.$store.state.Vault
       }

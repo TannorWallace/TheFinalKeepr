@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-
+    <button @click="newVault">Make New Vault</button>
     <VaultsComponent></VaultsComponent>
     <!-- <div class="Vault">
       <div class="card" style="width: 18rem;">
@@ -27,10 +27,14 @@
     },
     computed: {},
     methods: {
+      newVault() {
+        router.push({ name: 'newVault' })
+      }
     },
     mounted() {
       this.$store.dispatch('getVaultsByUserId')
     },
+
     components: {
       VaultsComponent
 
