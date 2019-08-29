@@ -25,10 +25,10 @@ namespace Keepr.Data
     }
     #region DELETE
     //delete doesnt return anything DUH!!! THats why it wasnt working with action result
-    public void DeleteVaults(int id)
+    public bool DeleteVaultById(int id)
     {
       var complete = _db.Execute("DELETE FROM vaults WHERE id = @id", new { id });
-      if (complete != 1)
+      return complete > 0;
       {
         throw new Exception("Unable to comply");
       }
@@ -38,7 +38,7 @@ namespace Keepr.Data
     #region CREATE/POST
     public Vault CreateVault(Vault vault)
     {
-      var id = _db.ExecuteScalar<int>(@"INSERT INTO vaults (name, description) VALUES (@Name, @Description); 
+      var id = _db.ExecuteScalar<int>(@"INSERT INTO vaults (userId, name, description) VALUES (@UserId,@Name, @Description); 
       SELECT LAST_INSERT_ID();", vault);
       vault.Id = id;
       return vault;
@@ -49,6 +49,11 @@ namespace Keepr.Data
     public Vault GetVaultsById(int id)
     {
       return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
+    }
+
+    public IEnumerable<Vault> GetVaultsByUserId(string userId)
+    {
+      return _db.Query<Vault>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
     }
     #endregion
 

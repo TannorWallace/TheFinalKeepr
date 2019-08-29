@@ -27,7 +27,7 @@ namespace Keepr.Data
     #region CREATE KEEPS
     public Keep CreateKeep(Keep keeps)
     {
-      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, img, description, userId) VALUES (@Name, @Img, @Description,  @userId);
+      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, img, description, userId) VALUES (@Name, @Img, @Description, @userId);
   SELECT LAST_INSERT_ID();", keeps);
       keeps.Id = id;
       return keeps;

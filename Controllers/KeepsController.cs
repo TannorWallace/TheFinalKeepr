@@ -4,9 +4,9 @@
 using System;
 using Keepr.Data;
 using Keepr.Models;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Keepr.Controllers
@@ -97,6 +97,7 @@ namespace Keepr.Controllers
     {
       try
       {
+
         _repository.DeleteKeeps(id);
         return Ok("Keep Destoryed!");
       }

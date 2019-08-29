@@ -27,6 +27,7 @@ namespace Keepr.Controllers
     }
     #region POST
     // POST api/vaults
+    [Authorize]
     [HttpPost]
     public ActionResult<Vault> Post([FromBody] Vault vault)
     {
@@ -61,30 +62,50 @@ namespace Keepr.Controllers
     #endregion
     #region GETBYID
     // GET api/values/5
-    [HttpGet("{id}")]
-    public ActionResult<Vault> Get(int id)
+    // [Authorize]
+    // [HttpGet("{id}")]
+    // public ActionResult<Vault> Get(int id)
+    // {
+    //   try
+    //   {
+    //     string userId = HttpContext.User.FindFirstValue("Id");
+
+    //     return Ok(_repository.GetVaultsById(id));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
+    [Authorize]
+    [HttpGet("user")]
+
+    public ActionResult<Vault> GetVaultsByUserId()
     {
       try
       {
 
-        return Ok(_repository.GetVaultsById(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+        string userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_repository.GetVaultsByUserId(userId));
 
+      }
+      catch
+      {
+        return BadRequest("NOpe UserID or something is wrong");
+      }
+
+    }
     #endregion
     #region DELETE
     // DELETE api/values/5
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<Vault> Delete(int id)
     {
       try
       {
-        _repository.DeleteVaults(id);
-        return Ok("Vault Destroyed");
+        return Ok(_repository.DeleteVaultById(id));
+        // return Ok("Vault Destroyed");
       }
       catch (Exception e)
       {
