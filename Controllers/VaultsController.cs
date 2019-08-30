@@ -44,21 +44,21 @@ namespace Keepr.Controllers
     #endregion
     #region GET
     // GET api/values
-    [HttpGet]
-    //FIXME WHY ISNT GET WORKING?? VAULTS? VAULT? NAMING IS HARD!
-    public ActionResult<IEnumerable<Vault>> Get()
-    {
-      try
-      {
-        return Ok(_repository.GetVaults());
-      }
-      catch (Exception e)
-      {
+    // [HttpGet]
+    // //FIXME WHY ISNT GET WORKING?? VAULTS? VAULT? NAMING IS HARD!
+    // public ActionResult<IEnumerable<Vault>> Get()
+    // {
+    //   try
+    //   {
+    //     return Ok(_repository.GetVaults());
+    //   }
+    //   catch (Exception e)
+    //   {
 
-        return BadRequest(e.Message);
-      }
+    //     return BadRequest(e.Message);
+    //   }
 
-    }
+    // }
     #endregion
     #region GETBYID
     // GET api/values/5
@@ -78,7 +78,7 @@ namespace Keepr.Controllers
     //   }
     // }
     [Authorize]
-    [HttpGet("user")]
+    [HttpGet]
 
     public ActionResult<Vault> GetVaultsByUserId()
     {

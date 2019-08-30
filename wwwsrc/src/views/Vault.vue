@@ -38,8 +38,9 @@
       }
     },
     mounted() {
-      // this.$store.dispatch('getVaultsByUserId')
-      this.$store.dispatch('getUserKeeps', this.userId)
+      // debugger
+      this.$store.dispatch('getVaultsByUserId', this.user.id)
+      this.$store.dispatch('getUserKeeps', this.user.id)
     },
 
     components: {

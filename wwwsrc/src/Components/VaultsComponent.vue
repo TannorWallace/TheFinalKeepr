@@ -30,6 +30,9 @@
     data() {
       return {}
     },
+    mounted() {
+      this.$store.dispatch('getVaultsByUserId')
+    },
 
     computed: {
       user() {

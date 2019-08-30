@@ -19,10 +19,10 @@ namespace Keepr.Data
     {
       _db = db;
     }
-    public IEnumerable<Vault> GetVaults()
-    {
-      return _db.Query<Vault>("SELECT * FROM vaults");
-    }
+    // public IEnumerable<Vault> GetVaults()
+    // {
+    //   return _db.Query<Vault>("SELECT * FROM vaults");
+    // }
     #region DELETE
     //delete doesnt return anything DUH!!! THats why it wasnt working with action result
     public bool DeleteVaultById(int id)
@@ -46,14 +46,15 @@ namespace Keepr.Data
     #endregion
 
     #region GETBYID
-    public Vault GetVaultsById(int id)
-    {
-      return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
-    }
+    // public Vault GetVaultsById(int id)
+    // {
+    //   return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
+    // }
 
     public IEnumerable<Vault> GetVaultsByUserId(string userId)
     {
-      return _db.Query<Vault>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
+      //UGH!!! PAY ATTENTION TO YOUR NAMES!! FROM VAULTS NOT FROM KEEPS!! THAT WAS 2 HOURS OF WASTED TIME BECAUSE YOU DONT PAY ATTENTION!!
+      return _db.Query<Vault>("SELECT * FROM vaults WHERE userId = @userId", new { userId });
     }
     #endregion
 

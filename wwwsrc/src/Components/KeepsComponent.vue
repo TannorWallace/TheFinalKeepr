@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-2">
-    <div class="row Keep ">
-      <div class="col-3 " v-for="Keep in Keep">
+    <div class="row Keep" v-for=" Keep in Keep">
+      <div class="col-3 ">
         <div class="card border border-dark m-1" style="width: 18rem;">
           <div class="card-body">
             <img :src="Keep.img" class="card-img-top" alt="...">
