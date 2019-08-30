@@ -10,6 +10,8 @@
             </p>
             <!-- this button will be save -->
             <button class="btn btn-success" v-if="user.id">S</button>
+            <!-- this button will view -->
+            <button class="btn btn-success" @click="selectedKeep(Keep)" v-if="user.id">V</button>
             <!-- this button will be delete -->
             <button class="btn btn-danger" v-if="user.id" @click="deleteKeepbyId(Keep.id)">X</button>
           </div>
@@ -41,6 +43,11 @@
       deleteKeepbyId(id) {
         // debugger
         this.$store.dispatch('deleteKeepById', id)
+      },
+      selectedKeep(Keep) {
+        // debugger
+        //WTF that took forever
+        this.$router.push({ name: 'selectedKeep', params: { selectedKeep: Keep } })
       }
     },
     components: {
