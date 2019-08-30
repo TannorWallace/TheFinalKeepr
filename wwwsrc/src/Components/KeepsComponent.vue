@@ -9,9 +9,9 @@
             <p class="card-text">{{Keep.description}}
             </p>
             <!-- this button will be save -->
-            <button class="btn btn-success">S</button>
+            <button class="btn btn-success" v-if="user.id">S</button>
             <!-- this button will be delete -->
-            <button class="btn btn-danger" @click="deleteKeepbyId(Keep.id)">X</button>
+            <button class="btn btn-danger" v-if="user.id" @click="deleteKeepbyId(Keep.id)">X</button>
           </div>
         </div>
       </div>
@@ -32,6 +32,9 @@
     computed: {
       Keep() {
         return this.$store.state.Keep
+      },
+      user() {
+        return this.$store.state.user;
       }
     },
     methods: {

@@ -1,6 +1,7 @@
 <template>
   <div class="newVault">
     <div class="row">
+      <router-link to='/'>Home</router-link>
       <!-- hey that bootswatch thing is pretty kewl -->
       <form @submit="makeNewVault">
         <div class="form-group">
@@ -42,6 +43,9 @@
       makeNewVault() {
         this.$store.dispatch('makeNewVault', this.newVault)
         router.push({ name: 'vault' })
+      },
+      user() {
+        return this.$store.state.user;
       }
     },
     components: {}

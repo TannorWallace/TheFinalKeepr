@@ -4,8 +4,8 @@
       <h1>Welcome Home {{user.username}}</h1>
       <button v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
-      <button @click="Keep">Post a Keep</button>
-      <button @click="Vault">Go to Vault</button>
+      <button v-if="user.id" @click="Keep">Post a Keep</button>
+      <button v-if="user.id" @click="Vault">Go to Vault</button>
       <KeepsComponent></KeepsComponent>
 
     </div>
