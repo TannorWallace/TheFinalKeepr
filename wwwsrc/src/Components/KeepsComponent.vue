@@ -18,6 +18,7 @@
             <button class="btn btn-success" @click="selectedKeep(Keep)" v-if="user.id">V</button>
             <!-- this button will be delete -->
             <button class="btn btn-danger" v-if="user.id" @click="deleteKeepbyId(Keep.id)">X</button>
+            <!--TODO need some kind of selector with the ability to choose a vault -->
           </div>
         </div>
       </div>
@@ -32,7 +33,11 @@
     // props: ['keepData'],
     data() {
       return {
+        vaultkeep: {
 
+          // TODO store the keepId
+          // TODO store the vaultId to add keep to
+        }
       }
     },
     computed: {
@@ -42,6 +47,7 @@
       user() {
         return this.$store.state.user;
       }
+      // TODO we need vaults here so we can select one
     },
     methods: {
       deleteKeepbyId(id) {
@@ -53,6 +59,7 @@
         //WTF that took forever
         this.$router.push({ name: 'selectedKeep', params: { id: Keep.id } })
       }
+      //TODO method to create vaultkeep
     },
     components: {
 

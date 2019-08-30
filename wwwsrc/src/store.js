@@ -171,6 +171,8 @@ export default new Vuex.Store({
       }
       catch (error) { console.log(error) }
     },
+    // TODO create new vaultkeep action
 
+    //TODO add action to get the keeps by vaultId
   }
 })

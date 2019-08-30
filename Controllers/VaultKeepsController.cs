@@ -27,6 +27,7 @@ namespace Keepr.Controllers
     [Authorize]
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody]VaultKeep VaultKeep)
+    // needs a keep id and a vault id
     {
       VaultKeep.UserId = HttpContext.User.FindFirstValue("Id");
 

@@ -114,7 +114,6 @@ namespace Keepr.Controllers
     //CAPITAL KEEP NOT keep !! JEEZ MAN COME ON!!
     public ActionResult<IEnumerable<Keep>> GetPublicKeeps()
     {
-      string userId = HttpContext.User.FindFirstValue("Id");
       try
       {
         return Ok(_repository.GetPublicKeeps());
