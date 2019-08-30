@@ -28,7 +28,7 @@
     mounted() {
       //debugger
       //  >:( I wanna sleep but i gotta pass
-      this.$store.dispatch("getKeepById", this.$route.params.)
+      this.$store.dispatch("getKeepById", this.$route.params.id)
       //NOTE gotta figure out the id above.
     },
     computed: {

@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid mt-2">
+    <h2>public keeps</h2>
     <div class="row Keep" v-for=" Keep in Keep">
       <div class="col-3 ">
         <div class="card border border-dark m-1" style="width: 18rem;">
@@ -8,6 +9,9 @@
             <h5 class="card-title">{{Keep.name}}</h5>
             <p class="card-text">{{Keep.description}}
             </p>
+            <p>Shares: {{Keep.shares}}</p>
+            <p>Views: {{Keep.views}}</p>
+            <p>Keeps: {{Keep.keeps}}</p>
             <!-- this button will be save -->
             <button class="btn btn-success" v-if="user.id">S</button>
             <!-- this button will view -->
@@ -47,7 +51,7 @@
       selectedKeep(Keep) {
         // debugger
         //WTF that took forever
-        this.$router.push({ name: 'selectedKeep', params: { selectedKeep: Keep } })
+        this.$router.push({ name: 'selectedKeep', params: { id: Keep.id } })
       }
     },
     components: {

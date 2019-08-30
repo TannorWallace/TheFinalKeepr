@@ -52,7 +52,7 @@ export default new Router({
 
     },
     {
-      path: '/selectedKeep',
+      path: '/selectedKeep/:id',
       name: 'selectedKeep',
       component: selectedKeep
     },

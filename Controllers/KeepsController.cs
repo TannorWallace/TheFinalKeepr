@@ -26,22 +26,22 @@ namespace Keepr.Controllers
 
     #region ALL-GET-METHODS!!
     // GET api/values
-    [HttpGet]
-    public ActionResult<IEnumerable<Keep>> Get()
-    {
-      try
-      {
-        //IDK why GetKeeps is red? hmmm....I guess I figured it out
-        return Ok(_repository.GetKeeps());
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [HttpGet]
+    // public ActionResult<IEnumerable<Keep>> Get()
+    // {
+    //   try
+    //   {
+    //     //IDK why GetKeeps is red? hmmm....I guess I figured it out
+    //     return Ok(_repository.GetKeeps());
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     // GET api/values/5
-    [Authorize]
+    // [Authorize]
     [HttpGet("{id}")]
     public ActionResult<Keep> Get(int id)
     {
@@ -54,6 +54,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
 
     [Authorize]
     [HttpGet("user")]
@@ -109,7 +110,7 @@ namespace Keepr.Controllers
       }
     }
     [Authorize]
-    [HttpGet("{id}")]
+    [HttpGet]
     //CAPITAL KEEP NOT keep !! JEEZ MAN COME ON!!
     public ActionResult<IEnumerable<Keep>> GetPublicKeeps()
     {

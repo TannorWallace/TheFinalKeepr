@@ -75,7 +75,7 @@ namespace Keepr.Data
     public IEnumerable<Keep> GetPublicKeeps()
     {
       // ohhhhhh!!!! That wasn't like swallowing a fist full of rusty nails...
-      return _db.Query<Keep>("SELECT *FROM keeps ");
+      return _db.Query<Keep>("SELECT * FROM keeps ");
     }
 
     #endregion
