@@ -54,6 +54,7 @@ namespace Keepr.Controllers
     //     return BadRequest(e.Message);
     //   }
     // }
+
     [Authorize]
     [HttpGet("user")]
 
@@ -107,5 +108,23 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [Authorize]
+    [HttpGet("{id}")]
+    //CAPITAL KEEP NOT keep !! JEEZ MAN COME ON!!
+    public ActionResult<IEnumerable<Keep>> GetPublicKeeps()
+    {
+      string userId = HttpContext.User.FindFirstValue("Id");
+      try
+      {
+        return Ok(_repository.GetPublicKeeps());
+      }
+      catch (Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+    }
+    //I DONT WANNA DO EEEEEEDITSSSS!!! people said they are hard (sad face)
+
   }
 }

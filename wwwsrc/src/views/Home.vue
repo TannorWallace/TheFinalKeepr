@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="home">
-      <h1>Welcome Home {{user.username}}</h1>
+      <h1>Welcome to Hell {{user.username}}</h1>
       <button v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
       <button v-if="user.id" @click="Keep">Post a Keep</button>
@@ -34,7 +34,9 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getKeeps')
+      // this.$store.dispatch('getUserKeeps')
+      this.$store.dispatch('getPublicKeeps')
+
     },
     components: {
       KeepsComponent

@@ -27,7 +27,7 @@ namespace Keepr.Data
     #region CREATE KEEPS
     public Keep CreateKeep(Keep keeps)
     {
-      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, img, description, userId) VALUES (@Name, @Img, @Description, @userId);
+      int id = _db.ExecuteScalar<int>(@"INSERT INTO keeps (name, img, description, userId, isprivate) VALUES (@Name, @Img, @Description, @userId, @Isprivate);
   SELECT LAST_INSERT_ID();", keeps);
       keeps.Id = id;
       return keeps;
@@ -37,7 +37,7 @@ namespace Keepr.Data
     #region GETALLKEEPS
     public IEnumerable<Keep> GetKeeps()
     {
-      return _db.Query<Keep>("SELECT * FROM keeps");
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE isPrivate = 0");
     }
     #endregion
 
@@ -72,6 +72,12 @@ namespace Keepr.Data
         throw new Exception("Failed to delete");
       }
     }
+    public IEnumerable<Keep> GetPublicKeeps()
+    {
+      // ohhhhhh!!!! That wasn't like swallowing a fist full of rusty nails...
+      return _db.Query<Keep>("SELECT *FROM keeps ");
+    }
+
     #endregion
   }
 }

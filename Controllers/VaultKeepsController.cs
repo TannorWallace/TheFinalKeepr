@@ -26,14 +26,14 @@ namespace Keepr.Controllers
     // POST api/values
     [Authorize]
     [HttpPost]
-    public ActionResult<VaultKeep> Create([FromBody]VaultKeep newVaultKeep)
+    public ActionResult<VaultKeep> Create([FromBody]VaultKeep VaultKeep)
     {
-      newVaultKeep.UserId = HttpContext.User.FindFirstValue("Id");
+      VaultKeep.UserId = HttpContext.User.FindFirstValue("Id");
 
       try
       {
 
-        return Ok(_repository.CreateVaultKeep(newVaultKeep));
+        return Ok(_repository.CreateVaultKeep(VaultKeep));
       }
       catch (Exception e)
       {
@@ -44,10 +44,10 @@ namespace Keepr.Controllers
     // GET api/values
     [Authorize]
     [HttpGet("{VaultId}")]
-    public ActionResult<IEnumerable<VaultKeep>> GetByVaultId(int VaultId)
+    public ActionResult<IEnumerable<VaultKeep>> GetVaultByVaultId(int VaultId)
     {
       var UserId = HttpContext.User.FindFirstValue("Id");
-      return Ok(_repository.GetVaultById(VaultId, UserId));
+      return Ok(_repository.GetVaultByVaultId(VaultId, UserId));
     }
 
     // // DELETE api/values/5

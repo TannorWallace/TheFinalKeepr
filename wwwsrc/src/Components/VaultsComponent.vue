@@ -1,8 +1,5 @@
 <template>
   <div class="container-fluid">
-
-
-
     <div class="">
       <h3> Welcom to Vaults-Tec {{user.username}}</h3>
       <router-link to='/'>Home</router-link>

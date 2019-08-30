@@ -1,22 +1,26 @@
 <template>
-  <div class="newVault">
-    <div class="row">
-      <router-link to='/'>Home</router-link>
-      <!-- hey that bootswatch thing is pretty kewl -->
-      <form @submit="makeNewVault">
-        <div class="form-group">
-          <label class="col-form-label col-form-label-lg" for="vault">New Vault</label>
-          <input class="form-control form-control-lg" type="text" placeholder="Name" id="vault" v-model="newVault.name">
-          <label class="col-form-label col-form-label-lg" for="vault"></label>
-          <input class="form-control form-control-lg" type="text" placeholder="Description" id="vault"
-            v-model="newVault.description">
-          <button type="submit">Make Vault</button>
-        </div>
+  <div class="container-fluid">
 
 
-      </form>
+    <div class="newVault">
+      <div class="row">
+        <router-link to='/'>Home</router-link>
+        <!-- hey that bootswatch thing is pretty kewl -->
+        <form @submit="makeNewVault">
+          <div class="form-group">
+            <label class="col-form-label col-form-label-lg" for="vault">New Vault</label>
+            <input class="form-control form-control-lg" type="text" placeholder="Name" id="vault"
+              v-model="newVault.name">
+            <label class="col-form-label col-form-label-lg" for="vault"></label>
+            <input class="form-control form-control-lg" type="text" placeholder="Description" id="vault"
+              v-model="newVault.description">
+            <button type="submit">Make Vault</button>
+          </div>
+
+
+        </form>
+      </div>
     </div>
-  </div>
 
 
   </div>

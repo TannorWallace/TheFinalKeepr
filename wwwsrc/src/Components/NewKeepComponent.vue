@@ -1,34 +1,37 @@
 <template>
-  <div class="newKeep">
-    <div class="row">
-      <router-link to='/'>Home</router-link>
-      <!-- hey that bootswatch thing is pretty kewl -->
-      <form @submit="makeNewKeep">
-        <div class="form-group">
-          <label class="col-form-label col-form-label-lg" for="keep"></label>
-          <label class="col-form-label col-form-label-lg" for="keep">New Keep</label><br>
-          <input class="form-control form-control-lg" type="text" placeholder="imageUrl Here" id="keep"
-            v-model="newKeep.Img"><br>
-          <input class="form-control form-control-lg" type="text" placeholder="Name" id="keep" v-model="newKeep.name">
-          <label class="col-form-label col-form-label-lg" for="keep"></label>
+  <div class="container-fluid">
 
-          <input class="form-control form-control-lg" type="text" placeholder="Description" id="keep"
-            v-model="newKeep.description">
 
-          <!-- checkbox start here!!! -->
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="newKeep.isPrivate">Private</label>
+    <div class="newKeep">
+      <div class="row">
+        <router-link to='/'>Home</router-link>
+        <!-- hey that bootswatch thing is pretty kewl -->
+        <form @submit="makeNewKeep">
+          <div class="form-group">
+            <label class="col-form-label col-form-label-lg" for="keep"></label>
+            <label class="col-form-label col-form-label-lg" for="keep">New Keep</label><br>
+            <input class="form-control form-control-lg" type="text" placeholder="imageUrl Here" id="keep"
+              v-model="newKeep.Img"><br>
+            <input class="form-control form-control-lg" type="text" placeholder="Name" id="keep" v-model="newKeep.name">
+            <label class="col-form-label col-form-label-lg" for="keep"></label>
 
-            <!-- next checkbox is here!!! -->
-            <!-- <div class="form-check form-check-inline">
+            <input class="form-control form-control-lg" type="text" placeholder="Description" id="keep"
+              v-model="newKeep.description">
+
+            <!-- checkbox start here!!! -->
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" v-model="newKeep.isPrivate">Private</label>
+
+              <!-- next checkbox is here!!! -->
+              <!-- <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox"  v-model="newKeep.isPrivate">Public</label> -->
 
-            <button type="submit">Make Keep</button>
+              <button type="submit">Make Keep</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-
 
   </div>
 
