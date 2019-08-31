@@ -62,21 +62,21 @@ namespace Keepr.Controllers
     #endregion
     #region GETBYID
     // GET api/values/5
-    // [Authorize]
-    // [HttpGet("{id}")]
-    // public ActionResult<Vault> Get(int id)
-    // {
-    //   try
-    //   {
-    //     string userId = HttpContext.User.FindFirstValue("Id");
+    [Authorize]
+    [HttpGet("{id}")]
+    public ActionResult<Vault> Get(int id)
+    {
+      try
+      {
+        string userId = HttpContext.User.FindFirstValue("Id");
 
-    //     return Ok(_repository.GetVaultsById(id));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+        return Ok(_repository.GetVaultsById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
     [Authorize]
     [HttpGet]
 

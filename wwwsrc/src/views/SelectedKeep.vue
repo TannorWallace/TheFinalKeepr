@@ -8,7 +8,9 @@
             <h5 class="card-title">{{selectedKeep.name}}</h5>
             <p class="card-text">{{selectedKeep.description}}
             </p>
-            <button class="btn btn-success" @click="saveKeep(selectedKeep)">S</button>
+            <div v-for="vault in Vaults">
+              <button class="btn btn-success" @click="saveKeep(vault.id)">add to vault</button>
+            </div>
           </div>
         </div>
       </div>
@@ -30,17 +32,26 @@
       //  >:( I wanna sleep but i gotta pass
       this.$store.dispatch("getKeepById", this.$route.params.id)
       //NOTE gotta figure out the id above.
+      this.$store.dispatch("getVaultsByUserId")
     },
     computed: {
       selectedKeep() {
         return this.$store.state.selectedKeep
       },
+      Vaults() {
+        return this.$store.state.Vault
+      }
     },
     methods: {
       //just like drinkster!!
-      saveKeep(selectedKeep) {
-        this.$store.dispatch('saveKeepToVault', selectedKeep)
-      }
+      saveKeep(vaultId) {
+        let vaultkeep = {
+          vaultId: vaultId,
+          keepId: this.$route.params.id
+        }
+        this.$store.dispatch('createVaultKeep', vaultkeep)
+      },
+      // saveKeepToVault()
     },
     components: {}
   }

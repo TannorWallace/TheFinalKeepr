@@ -14,6 +14,9 @@ import newVault from './Components/NewVaultComponent.vue'
 import newKeep from './Components/NewKeepComponent.vue'
 //@ts-ignore
 import selectedKeep from './views/SelectedKeep.vue'
+//@ts-ignore
+
+import VaultKeep from './views/VaultKeep.vue'
 
 Vue.use(Router)
 
@@ -55,6 +58,12 @@ export default new Router({
       path: '/selectedKeep/:id',
       name: 'selectedKeep',
       component: selectedKeep
+    },
+    {
+      path: '/VaultKeep/:VaultId',
+      name: 'vaultKeep',
+      component: VaultKeep
+
     },
     {
       path: "*",

@@ -45,10 +45,10 @@ namespace Keepr.Controllers
     // GET api/values
     [Authorize]
     [HttpGet("{VaultId}")]
-    public ActionResult<IEnumerable<VaultKeep>> GetVaultByVaultId(int VaultId)
+    public ActionResult<IEnumerable<VaultKeep>> GetKeepsByVaultId(int VaultId)
     {
       var UserId = HttpContext.User.FindFirstValue("Id");
-      return Ok(_repository.GetVaultByVaultId(VaultId, UserId));
+      return Ok(_repository.GetKeepsByVaultId(VaultId, UserId));
     }
 
     // // DELETE api/values/5

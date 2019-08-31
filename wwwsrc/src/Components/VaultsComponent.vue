@@ -15,6 +15,7 @@
             <button class="btn btn-success">S</button>
             <!-- this button will be delete -->
             <button class="btn btn-danger" @click="deleteVaultById(Vault.id)">X</button>
+            <Button @click="viewVault(Vault)">Vault</Button>
           </div>
         </div>
       </div>
@@ -49,6 +50,9 @@
       deleteVaultById(id) {
 
         this.$store.dispatch("deleteVaultById", id)
+      },
+      viewVault(Vault) {
+        this.$router.push({ name: "vaultKeep", params: { VaultId: Vault.id } })
       }
     },
 

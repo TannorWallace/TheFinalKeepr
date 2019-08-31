@@ -46,10 +46,10 @@ namespace Keepr.Data
     #endregion
 
     #region GETBYID
-    // public Vault GetVaultsById(int id)
-    // {
-    //   return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
-    // }
+    public Vault GetVaultsById(int id)
+    {
+      return _db.QueryFirstOrDefault<Vault>("SELECT * FROM vaults WHERE id = @id", new { id });
+    }
 
     public IEnumerable<Vault> GetVaultsByUserId(string userId)
     {

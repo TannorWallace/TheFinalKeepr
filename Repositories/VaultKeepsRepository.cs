@@ -54,7 +54,7 @@ namespace Keepr.Data
     //     }
     #endregion
 
-    public IEnumerable<Keep> GetVaultByVaultId(int VaultId, string UserId)
+    public IEnumerable<Keep> GetKeepsByVaultId(int VaultId, string UserId)
     {
       string query = @"
       SELECT * FROM vaultkeeps vk
