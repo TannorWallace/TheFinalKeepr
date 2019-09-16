@@ -39,6 +39,7 @@ namespace Keepr.Controllers
     //     return BadRequest(e.Message);
     //   }
     // }
+    #endregion
 
     // GET api/values/5
     // [Authorize]
@@ -74,7 +75,6 @@ namespace Keepr.Controllers
       }
 
     }
-    #endregion
 
     // POST api/values
     [HttpPost]
